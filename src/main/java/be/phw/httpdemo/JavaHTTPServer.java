@@ -26,12 +26,9 @@ public class JavaHTTPServer implements Runnable{
 
 	// Client Connection via Socket Class
 	private Socket connect;
-
-	private InfosService infosService;
 	
-	public JavaHTTPServer(Socket connect, InfosService infosService) {
+	public JavaHTTPServer(Socket connect) {
 		this.connect = connect;
-		this.infosService = infosService;
 	}
 	
 	@Override
@@ -55,8 +52,6 @@ public class JavaHTTPServer implements Runnable{
 			String method = parse.nextToken().toUpperCase(); // we get the HTTP method of the client
 			// we get file requested
 			fileRequested = parse.nextToken().toLowerCase();
-
-			infosService.log(fileRequested);
 
 			// we support only GET and HEAD methods, we check
 			if (Arrays.asList("GET", "HEAD").contains(method)) {
